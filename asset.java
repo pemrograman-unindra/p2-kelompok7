@@ -14,7 +14,7 @@ public class asset {
 		System.out.println("|                                       |");
 		System.out.println("| NPM - Abdur Rosyid Fachriansyah       |");
 		System.out.println("| 202243570024 - Jeffry Luqman          |");
-		System.out.println("| NPM - Alfarobby                       |");
+		System.out.println("| 202243500497 - Alfarobby              |");
 		System.out.println("| NPM - Ahmad Badawi                    |");
 		System.out.println("| NPM - Sangga Buana                    |");
 		System.out.println("| NPM - Riyan Rizaldy                   |");
