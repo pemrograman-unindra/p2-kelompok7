@@ -7,7 +7,7 @@ Ini adalah aplikasi asset management sederhana, tugas Pemrograman 2 Kelompok 7 K
 3. 202243500497 - [Alfarobby](https://github.com/Alfarobby27)
 4. NPM - Ahmad Badawi
 5. NPM - Sangga Buana
-6. 202243500524 - Riyan Rizaldy
+6. 202243500524 - [Riyan Rizaldt] (https://github.com/riyanzaldy03) 
 
 ## Memulai
 1. Pastikan komputer kamu sudah terinstall [Git](https://git-scm.com/) dan [Java Development Kit](http://jdk.java.net/).
