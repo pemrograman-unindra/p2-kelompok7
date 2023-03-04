@@ -4,7 +4,7 @@ Ini adalah aplikasi asset management sederhana, tugas Pemrograman 2 Kelompok 7 K
 ## Anggota
 1. NPM - Abdur Rosyid Fachriansyah
 2. 202243570024 - [Jeffry Luqman](https://github.com/jeffry-luqman)
-3. NPM - Alfarobby
+3. 202243500497 - [Alfarobby](https://github.com/Alfarobby27)
 4. NPM - Ahmad Badawi
 5. NPM - Sangga Buana
 6. NPM - Riyan Rizaldy
