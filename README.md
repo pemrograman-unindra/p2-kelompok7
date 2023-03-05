@@ -5,8 +5,8 @@ Ini adalah aplikasi asset management sederhana, tugas Pemrograman 2 Kelompok 7 K
 1. 202243500501 - [Abdur Rosyid Fachriansyah](https://github.com/dellwatch21) 
 2. 202243570024 - [Jeffry Luqman](https://github.com/jeffry-luqman)
 3. 202243500497 - [Alfarobby](https://github.com/Alfarobby27)
-4. NPM - Ahmad Badawi
-5. NPM - Sangga Buana
+4. 202243500500 - [Ahmad Badawi]
+5. 202243500502 - [Sangga Buana](https://github.com/sanggabuana453)
 6. 202243500524 - [Riyan Rizaldy](https://github.com/riyanzaldy03) 
 
 ## Memulai
