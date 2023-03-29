@@ -7,8 +7,8 @@ Ini adalah aplikasi asset management sederhana, tugas Pemrograman 2 Kelompok 7 K
 3. 202243500497 - [Alfarobby](https://github.com/Alfarobby27)
 4. 202243500500 - [Ahmad Badawi](https://github.com/Ahmadbadawi123)
 5. 202243500502 - [Sangga Buana](https://github.com/sanggabuana453)
-6. 202243500524 - [Riyan Rizaldy](https://github.com/riyanzaldy03) 
-6. 202243579056 - [Zaki Hasbi](https://github.com/zakihasbi95) 
+6. 202243500524 - [Riyan Rizaldy](https://github.com/riyanzaldy03)
+
 ## Memulai
 1. Pastikan komputer kamu sudah terinstall [Git](https://git-scm.com/) dan [Java Development Kit](http://jdk.java.net/).
 2. Kloning repositori ini ke komputer kamu dan masuk ke folder restoran dari terminal atau cmd
