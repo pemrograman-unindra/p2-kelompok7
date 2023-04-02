@@ -19,7 +19,7 @@ public class AssetManagement {
 		System.out.println("|            Tugas Pemrograman 2           |");
 		System.out.println("|                 Kelompok 7               |");
 		System.out.println("+--------------+---------------------------+");
-		System.out.println("| NPM          | nama                      |");
+		System.out.println("| NPM          | Nama                      |");
 		System.out.println("+--------------+---------------------------+");
 		System.out.println("| 202243500501 | Abdur Rosyid Fachriansyah |");
 		System.out.println("| 202243570024 | Jeffry Luqman             |");
@@ -28,15 +28,14 @@ public class AssetManagement {
 		System.out.println("| 202243500502 | Sangga Buana              |");
 		System.out.println("| 202243500524 | Riyan Rizaldy             |");
 		System.out.println("+--------------+---------------------------+");
-		System.out.println();		
 	}
 
 	// tampilkan pilih menu
 	public static void menu() {
 		System.out.println();
-		System.out.println("-----------------------------------------");
-		System.out.println("🏘  Pilih menu");
-		System.out.println("-----------------------------------------");
+		System.out.println("--------------------------------------------");
+		System.out.println("🏘  Pilih Menu");
+		System.out.println("--------------------------------------------");
 		System.out.println();
 		System.out.println("1. Tampilkan Daftar Asset 📋");
 		System.out.println("2. Lihat Rincian Asset 🗂️");
@@ -101,10 +100,10 @@ public class AssetManagement {
 			isi_data_tabel_kategori_asset[i][0] = Integer.toString(i + 1);
 			isi_data_tabel_kategori_asset[i][1] = data_kategori_asset[i].nama;
 			isi_data_tabel_kategori_asset[i][2] = data_kategori_asset[i].metode_penyusutan;
-			if (data_kategori_asset[i].metode_penyusutan.equals("Tanpa Penyusutan")) {
-				isi_data_tabel_kategori_asset[i][3] = "-";
-			} else {
+			if (data_kategori_asset[i].umur_ekonomis>0) {
 				isi_data_tabel_kategori_asset[i][3] = Integer.toString(data_kategori_asset[i].umur_ekonomis) + " Tahun";
+			} else {
+				isi_data_tabel_kategori_asset[i][3] = "-";
 			}
 		}
 		judul_kolom_tabel_asset = new String[]{"No.", "Nama Asset", "Tahun Perolehan", "Nilai Perolehan", "Penyusutan Per Tahun", "Akumulasi Penyusutan", "Nilai Buku"};
@@ -136,8 +135,7 @@ public class AssetManagement {
 
 		// tampilkan pilihan kategori dengan tabel yang rapih
 		helper.cetakTabel(judul_kolom_tabel_kategori_asset, lebar_kolom_tabel_kategori_asset, isi_data_tabel_kategori_asset, jumlah_data_kategori_asset);
-		System.out.println();
-		System.out.print("Pilih kategori (1-5): "); String inputan = helper.bacaInput();
+		System.out.print("Pilih kategori (1-5) : "); String inputan = helper.bacaInput();
 		int nilai = helper.toInteger(inputan);
 
 		// validasi input, apabila tidak valid maka beri pesan tidak valid dan kembali ke tampilan inputan
@@ -225,7 +223,6 @@ public class AssetManagement {
 	// tampilkan inputan untuk memilih asset.
 	private static int pilihNomorAsset() {
 		daftarAsset(false);
-		System.out.println();
 		System.out.print("Masukan nomor asset : "); String inputan = helper.bacaInput();
 		int nilai = helper.toInteger(inputan);
 
@@ -289,12 +286,14 @@ public class AssetManagement {
 
 		// persiapkan data yang ingin ditampilkan
 		Asset data = data_asset[id-1];
+		String umur_ekonomis_string = "-";
 		int umur_ekonomis = data.kategori.umur_ekonomis;
 		int tahun_perolehan = data.tahun_perolehan;
 		double penyusutan_per_tahun = data.penyusutan_per_tahun;
 		double akumulasi_penyusutan = 0;
 		double nilai_buku = 0;
 		if (umur_ekonomis>0) {
+			umur_ekonomis_string = umur_ekonomis + " Tahun";
 			akumulasi_penyusutan = penyusutan_per_tahun * (tahun_ini - tahun_perolehan);
 			nilai_buku = data.nilai_perolehan - akumulasi_penyusutan;
 		}
@@ -303,7 +302,7 @@ public class AssetManagement {
 		System.out.println("Nama Asset           : " + data.nama);
 		System.out.println("Nama Kategori Asset  : " + data.kategori.nama);
 		System.out.println("Metode Penyusutan    : " + data.kategori.metode_penyusutan);
-		System.out.println("Umur Ekonomis        : " + data.kategori.umur_ekonomis + " Tahun");
+		System.out.println("Umur Ekonomis        : " + umur_ekonomis_string);
 		System.out.println("Tahun Perolehan      : " + tahun_perolehan);
 		System.out.println("Nilai Perolehan      : " + helper.formatAngka(Double.valueOf(data.nilai_perolehan)));
 		System.out.println("Nilai Residu         : " + helper.formatAngka(Double.valueOf(data.nilai_residu)));
@@ -332,7 +331,6 @@ public class AssetManagement {
 
 		System.out.println();
 		System.out.println("Data asset berhasil ditambahkan!");
-		System.out.println();
 		menu();
 	}
 
@@ -349,7 +347,6 @@ public class AssetManagement {
 
 		System.out.println();
 		System.out.println("Data asset berhasil diubah!");
-		System.out.println();
 		menu();
 	}
 
@@ -369,7 +366,6 @@ public class AssetManagement {
 
 		System.out.println();
 		System.out.println("Data asset berhasil dihapus!");
-		System.out.println();
 		menu();
 	}
 }
@@ -388,10 +384,6 @@ class Asset {
 	public int nilai_residu; // nilai residu
 
 	public double penyusutan_per_tahun; // penyusutan per tahun
-
-	public double akumulasi_penyusutan; // nilai akumulasi penyusutan, dihitung nya belakangan agar otomatis mengikuti tahun pada saat itu
-
-	public double nilai_buku; // nilai buku, dihitung nya belakangan agar otomatis mengikuti tahun pada saat itu
 }
 
 // class untuk mendefinisikan objek kategori asset
@@ -478,7 +470,7 @@ class helper {
 	// cetak baris dari suatu tabel
 	public static void cetakBaris(String[] kolom, int[] lebar_kolom) {
 		for (int i = 0; i < kolom.length; i++) {
-		System.out.print("|");
+			System.out.print("|");
 			helper.cetakCell(kolom[i], lebar_kolom[i]);
 		}
 		System.out.println("|");
@@ -489,7 +481,7 @@ class helper {
 		int maxLength = (length - teks.length() + 1);
 
 		// untuk angka maka rata kanan
-		if ((teks.charAt(0) >= '0' && teks.charAt(0) <= '9') || teks.equals("-")) {
+		if ((teks.charAt(0) >= '0' && teks.charAt(0) <= '9') || teks.charAt(0) == '-') {
 			for (int i = 0; i < maxLength; i++) {
 				System.out.print(" ");
 			}
