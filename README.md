@@ -17,15 +17,16 @@ Ini adalah aplikasi asset management sederhana, tugas Pemrograman 2 Kelompok 7 K
 	```
 3. Lakukan kompilasi aplikasi
 	```bash
-	javac asset.java
+	javac AssetManagement.java
 	```
 4. Jalankan aplikasi
 	```bash
-	java asset
+	java AssetManagement
 	```
 
 ## Fitur
-- [ ] Melihat Data Asset
-- [ ] Menambah Data Asset
-- [ ] Merubah Data Asset
-- [ ] Menghapus Data Asset
+- [x] Menampilkan Daftar Asset
+- [x] Melihat Rincian Asset
+- [x] Menambah Data Asset
+- [x] Merubah Data Asset
+- [x] Menghapus Data Asset
