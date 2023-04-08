@@ -62,7 +62,8 @@ public class AssetManagement {
             default: 
                 clearScreen();
                 System.out.println();
-                System.out.println("Nomor menu tidak valid! silakan pilih menu dengan angka 0 sampai 4"); 
+                cetakJudul();
+                System.out.println("\nNomor menu tidak valid! silakan pilih menu dengan angka 0 sampai 4"); 
                 menu(); break;
         }
     }
@@ -71,7 +72,12 @@ public class AssetManagement {
         Scanner s = new Scanner(System.in);
         String pilih;
         boolean selesai = true;
+<<<<<<< HEAD
         System.out.println("\n===========================\n");
+=======
+        
+        System.out.println("\n=============================\n");
+>>>>>>> 64bde3d7ba7264cef0afa88d3e3d96b32471e905
         System.out.print("Anda yakin ingin keluar ? [y/n] "); pilih = s.next();
         if(selesai = pilih.equalsIgnoreCase("y")) {
             selesai = true;
@@ -181,13 +187,14 @@ public class AssetManagement {
         else if (nilai == 3) System.out.println("\n3. Kategori yang anda pilih adalah Kendaraan(mobil) dengan metode penyusutan garis lurus =\n");
         else if (nilai == 4) System.out.println("\n4. Kategori yang anda pilih adalah Kendaraan(motor) dengan metode penyusutan garis lurus =\n");
         else if (nilai == 5) System.out.println("\n5. Kategori yang anda pilih adalah Peralatan dengan metode penyusutan garis lurus =\n");
+        
         // validasi input, apabila tidak valid maka beri pesan tidak valid dan kembali ke tampilan inputan
         if (!helper.isValidNumber(inputan) || nilai<0 || nilai > jumlah_data_kategori_asset) {
             System.out.println();
             System.out.println("Kategori tidak valid atau tidak tersedia!\nSilakan isi sesuai nomor kategori yang valid atau isi 0 untuk kembali ke menu utama."); 
             System.out.println();
             return inputKategori();
-
+        
         // apabila diisi 0 maka kembali ke menu utama
         } else if (nilai==0) {
             cetakJudul();
@@ -275,11 +282,19 @@ public class AssetManagement {
 
         // validasi input, apabila tidak valid maka beri pesan tidak valid dan kembali ke tampilan inputan
         if (!helper.isValidNumber(inputan) || nilai<0 || nilai>jumlah_data_asset) {
+            clearScreen();
             System.out.println();
+<<<<<<< HEAD
             System.out.println("Nomor asset tidak valid atau tidak tersedia!\nSilakan isi dengan angka yang valid atau isi 0 untuk kembali ke menu utama."); 
             System.out.println();
             return pilihNomorAsset();
 
+=======
+            System.out.println("Nomor asset tidak valid atau tidak tersedia!\nSilakan isi dengan angka yang valid atau isi 0 untuk kembali ke menu utama.");
+            System.out.println();
+            return pilihNomorAsset();
+            
+>>>>>>> 64bde3d7ba7264cef0afa88d3e3d96b32471e905
         // apabila diisi 0 maka kembali ke menu utama
         } else if (nilai==0) {
             cetakJudul();
@@ -319,6 +334,7 @@ public class AssetManagement {
         helper.cetakTabel(judul_kolom_tabel_asset, lebar_kolom_tabel_asset, isi_data_tabel_asset, jumlah_data_asset);
 
         if (navigasi) {
+            cetakJudul();
             menu();
         }
     }
@@ -331,7 +347,7 @@ public class AssetManagement {
         // pilih asset yang mau diubah
         int id = pilihNomorAsset();
         System.out.println();
-
+        
         // persiapkan data yang ingin ditampilkan
         Asset data = data_asset[id-1];
         String umur_ekonomis_string = "-";
@@ -358,6 +374,11 @@ public class AssetManagement {
         System.out.println("Akumulasi Penyusutan : " + helper.formatAngka(akumulasi_penyusutan));
         System.out.println("Nilai Buku           : " + helper.formatAngka(nilai_buku));
         
+<<<<<<< HEAD
+=======
+        
+        
+>>>>>>> 64bde3d7ba7264cef0afa88d3e3d96b32471e905
         //pilih lanjut atau tidak
         Scanner s = new Scanner(System.in);
         String milih;
@@ -371,6 +392,10 @@ public class AssetManagement {
         }else{
             clearScreen(); cetakJudul(); menu();
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 64bde3d7ba7264cef0afa88d3e3d96b32471e905
     }
 
     // tampilan untuk menambahkan data asset
@@ -393,9 +418,12 @@ public class AssetManagement {
         System.out.println();
         System.out.println("Data asset berhasil ditambahkan!");
         
+<<<<<<< HEAD
         //lihat daftar asset yang tealh ditambahkan
         daftarAsset(false);
         
+=======
+>>>>>>> 64bde3d7ba7264cef0afa88d3e3d96b32471e905
         //pilih lanjut atau tidak
         Scanner s = new Scanner(System.in);
         String milih;
