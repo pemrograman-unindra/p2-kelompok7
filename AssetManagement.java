@@ -1,107 +1,315 @@
 import java.time.LocalDate;
 import java.util.Scanner;
 
+// class untuk mendefinisikan objek asset
+class Asset {
+    public AssetCategory kategori; // kategori asset
+    public String nama; // nama asset
+    public int tahun_perolehan; // tahun perolehan
+    public int nilai_perolehan; // nilai perolehan
+    public int nilai_residu; // nilai residu
+    public double penyusutan_per_tahun; // penyusutan per tahun
+}
+
+// class untuk mendefinisikan objek kategori asset
+class AssetCategory {
+    public String nama; // nama kategori asset
+    public String metode_penyusutan; // metode penyusutan
+    public int umur_ekonomis; // umur ekonomis
+    public AssetCategory(String nama, String metode_penyusutan, int umur_ekonomis) {
+        this.nama = nama;
+        this.metode_penyusutan = metode_penyusutan;
+        this.umur_ekonomis = umur_ekonomis;
+    }
+}
+
+// class utama dari aplikasi Asset Management
 public class AssetManagement {
 
     // method utama yang akan dipanggil ketika aplikasi pertama dijalankan
     public static void main(String[] args) {
         cetakJudul();
         persiapan();
+        tahan();
         menu();
     }
 
     // tampilkan judul aplikasi
     private static void cetakJudul() {
+        clearScreen();
+        System.out.println(fmt("                                            ", BOLD, BG_MAGENTA));
+        System.out.println(fmt("               Asset Management             ", BOLD, BG_MAGENTA));
+        System.out.println(fmt("                                            ", BOLD, BG_MAGENTA));
         System.out.println();
-        System.out.println("+------------------------------------------+");
-        System.out.println("|              Asset Management            |");
-        System.out.println("+------------------------------------------+");
-        System.out.println("|            Tugas Pemrograman 2           |");
-        System.out.println("|                 Kelompok 7               |");
-        System.out.println("+--------------+---------------------------+");
-        System.out.println("| NPM          | Nama                      |");
-        System.out.println("+--------------+---------------------------+");
-        System.out.println("| 202243500501 | Abdur Rosyid Fachriansyah |");
-        System.out.println("| 202243570024 | Jeffry Luqman             |");
-        System.out.println("| 202243500497 | Alfarobby                 |");
-        System.out.println("| 202243500500 | Ahmad Badawi              |");
-        System.out.println("| 202243500502 | Sangga Buana              |");
-        System.out.println("| 202243500524 | Riyan Rizaldy             |");
-        System.out.println("+--------------+---------------------------+");
+        System.out.println(fmt("             Tugas Pemrograman 2            ", BOLD, HI_CYAN));
+        System.out.println(fmt("                  Kelompok 7                ", ITALIC, HI_CYAN));
+        System.out.println(fmt("+--------------+---------------------------+", HI_GREEN));
+        System.out.println(fmt("| NPM          | Nama                      |", HI_GREEN));
+        System.out.println(fmt("+--------------+---------------------------+", HI_GREEN));
+        System.out.println(fmt("| 202243500497 | Alfarobby                 |", HI_GREEN));
+        System.out.println(fmt("| 202243500500 | Ahmad Badawi              |", HI_GREEN));
+        System.out.println(fmt("| 202243500501 | Abdur Rosyid Fachriansyah |", HI_GREEN));
+        System.out.println(fmt("| 202243500502 | Sangga Buana              |", HI_GREEN));
+        System.out.println(fmt("| 202243500524 | Riyan Rizaldy             |", HI_GREEN));
+        System.out.println(fmt("| 202243570024 | Jeffry Luqman             |", HI_GREEN));
+        System.out.println(fmt("+--------------+---------------------------+", HI_GREEN));
+    }
+
+    // tampilkan judul menu
+    private static void cetakJudul(String judul) {
+        clearScreen();
+        System.out.println(fmt("--------------------------------------------", BOLD, HI_GREEN));
+        System.out.println(fmt(judul, BOLD, ITALIC, HI_GREEN));
+        System.out.println(fmt("--------------------------------------------", BOLD, HI_GREEN));
+        System.out.println();
     }
 
     // tampilkan pilih menu
-    public static void menu() {
-        System.out.println();
-        System.out.println("--------------------------------------------");
-        System.out.println("🏘  Pilih Menu");
-        System.out.println("--------------------------------------------");
-        System.out.println();
-        System.out.println("1. Tampilkan Daftar Asset 📋");
-        System.out.println("2. Lihat Rincian Asset 🗂️");
+    private static void menu() {
+        cetakJudul("Pilih Menu 💻");
+        System.out.println("1. Tampilkan Daftar Asset 🗂️");
+        System.out.println("2. Lihat Rincian Asset 📋");
         System.out.println("3. Tambah Data Asset ➕");
         System.out.println("4. Ubah Data Asset 📝");
         System.out.println("5. Hapus Data Asset ❌");
         System.out.println();
         System.out.println("0. Keluar ⬅️");
         System.out.println();
-        System.out.print("Silakan pilih menu (0-5) : ");
-        switch (helper.bacaInput()) {
-            case "1": clearScreen();
-                      daftarAsset(true); break;
-            case "2": clearScreen();
-                      rincianAsset(); break;
-            case "3": clearScreen();
-                      tambahAsset(); break;
-            case "4": clearScreen();
-                      ubahAsset(); break;
-            case "5": clearScreen();
-                      hapusAsset(); break;
+        System.out.print(fmt("Silakan pilih menu (0-5) : ", HI_MAGENTA));
+        switch (bacaInput()) {
+            case "1": daftarAsset(true); break;
+            case "2": rincianAsset(); break;
+            case "3": tambahAsset(); break;
+            case "4": ubahAsset(); break;
+            case "5": hapusAsset(); break;
             case "0": keluar(); break;
-            
             default: 
-                clearScreen();
-                System.out.println();
-                cetakJudul();
-                System.out.println("\nNomor menu tidak valid! silakan pilih menu dengan angka 0 sampai 4"); 
+                pesanKesalahan("Nomor menu tidak valid! silakan pilih menu dengan angka 0 sampai 5.");
                 menu(); break;
         }
     }
-    
-        private static void keluar() {
-        Scanner s = new Scanner(System.in);
-        String pilih;
-        boolean selesai = true;
-        
-        System.out.println("\n=============================\n");
-        
-        System.out.print("Anda yakin ingin keluar ? [y/n] "); pilih = s.next();
-        if(selesai = pilih.equalsIgnoreCase("y")) {
-            selesai = true;
-            System.out.println();
-            System.out.println("Terima kasih telah menggunakan aplikasi asset management kami...");
-            System.out.println("\ncopyright © 2023 Kelompok 7 X2E");
-            System.exit(0);
-        } else {
-            clearScreen();
-            cetakJudul();
+
+    // menampilkan daftar asset
+    private static void daftarAsset(Boolean navigasi) {
+        if (navigasi) {        
+            cetakJudul("Daftar Asset 🗂️");
+        }
+
+        for (int i = 0; i < jumlah_data_asset; i++) {
+            int umur_ekonomis = data_asset[i].kategori.umur_ekonomis;
+            int tahun_perolehan = data_asset[i].tahun_perolehan;
+            double nilai_perolehan = data_asset[i].nilai_perolehan;
+            double nilai_residu = data_asset[i].nilai_residu;
+            double penyusutan_per_tahun = data_asset[i].penyusutan_per_tahun;
+            double akumulasi_penyusutan = 0;
+            double nilai_buku = nilai_perolehan;
+            
+            // jika umur ekonomis nya lebih dari 0, maka hitung akumulasi penyusutan nya
+            if (umur_ekonomis>0) {
+                akumulasi_penyusutan = penyusutan_per_tahun * (tahun_ini - tahun_perolehan);
+                nilai_buku = nilai_perolehan - akumulasi_penyusutan;
+
+                // nilai buku maksimal senilai dengan nilai residu
+                if (nilai_buku < nilai_residu) {
+                    akumulasi_penyusutan = (nilai_perolehan-nilai_residu);
+                    nilai_buku = nilai_residu;
+                }
+            }
+            isi_data_tabel_asset[i][0] = Integer.toString(i + 1);
+            isi_data_tabel_asset[i][1] = data_asset[i].nama;
+            isi_data_tabel_asset[i][2] = Integer.toString(tahun_perolehan);
+            isi_data_tabel_asset[i][3] = formatAngka(nilai_perolehan);
+            isi_data_tabel_asset[i][4] = formatAngka(penyusutan_per_tahun);
+            isi_data_tabel_asset[i][5] = formatAngka(akumulasi_penyusutan);
+            isi_data_tabel_asset[i][6] = formatAngka(nilai_buku);
+        }
+        cetakTabel(judul_kolom_tabel_asset, lebar_kolom_tabel_asset, isi_data_tabel_asset, jumlah_data_asset);
+
+        if (navigasi) {
+            tahan();
             menu();
         }
     }
 
+    // menampilkan rincian asset
+    private static void rincianAsset(Asset... a) {
+        Asset data = new Asset();
+        if (a.length>0) {
+            data = a[0];
+        } else {            
+            cetakJudul("Rincian Data Asset 📋");
+
+            // pilih asset yang mau diubah
+            int id = pilihNomorAsset("rincian");
+            System.out.println();
+
+            // persiapkan data yang ingin ditampilkan
+            data = data_asset[id-1];
+        }
+        String umur_ekonomis_string = "-";
+        int umur_ekonomis = data.kategori.umur_ekonomis;
+        int tahun_perolehan = data.tahun_perolehan;
+        double nilai_perolehan = data.nilai_perolehan;
+        double nilai_residu = data.nilai_residu;
+        double penyusutan_per_tahun = data.penyusutan_per_tahun;
+        double akumulasi_penyusutan = 0;
+        double nilai_buku = nilai_perolehan;
+        
+        // jika umur ekonomis nya lebih dari 0, maka hitung akumulasi penyusutan nya
+        if (umur_ekonomis>0) {
+            umur_ekonomis_string = umur_ekonomis + " Tahun";
+            akumulasi_penyusutan = penyusutan_per_tahun * (tahun_ini - tahun_perolehan);
+            nilai_buku = data.nilai_perolehan - akumulasi_penyusutan;
+
+            // nilai buku maksimal senilai dengan nilai residu
+            if (nilai_buku < nilai_residu) {
+                akumulasi_penyusutan = (nilai_perolehan-nilai_residu);
+                nilai_buku = nilai_residu;
+            }
+        }
+
+        // tampilkan rincian dari asset yang dipilih
+        System.out.println("Nama Asset           : " + data.nama);
+        System.out.println("Nama Kategori Asset  : " + data.kategori.nama);
+        System.out.println("Metode Penyusutan    : " + data.kategori.metode_penyusutan);
+        System.out.println("Umur Ekonomis        : " + umur_ekonomis_string);
+        System.out.println("Tahun Perolehan      : " + tahun_perolehan);
+        System.out.println("Nilai Perolehan      : " + formatAngka(nilai_perolehan));
+        System.out.println("Nilai Residu         : " + formatAngka(nilai_residu));
+        System.out.println("Penyusutan Per Tahun : " + formatAngka(penyusutan_per_tahun));
+        System.out.println("Akumulasi Penyusutan : " + formatAngka(akumulasi_penyusutan));
+        System.out.println("Nilai Buku           : " + formatAngka(nilai_buku));
+        
+        if (a.length==0) {
+            pesanSukses("melihat rincian asset", "");
+            rincianAsset();
+        }
+    }
+
+    // tampilan untuk menambahkan data asset
+    private static void tambahAsset() {
+        cetakJudul("Tambah Data Asset ➕");
+
+        // pastikan kapasitas array nya masih cukup, apabila kurang maka lipatgandakan kapasitas nya terlebih dahulu
+        if (jumlah_data_asset == data_asset.length) {
+            isi_data_tabel_asset = new String[data_asset.length * 2][7];
+            Asset[] data_asset_baru = new Asset[data_asset.length * 2];
+            System.arraycopy(data_asset, 0, data_asset_baru, 0, data_asset.length);
+            data_asset = data_asset_baru;
+        }
+
+        // input data asset dan tambahkan kedalam array
+        Asset data = inputAsset();
+        data_asset[jumlah_data_asset] = data;
+        jumlah_data_asset++;
+
+        // tampilkan pesan sukses dan konfirmasi apakah ingin menambah data asset kembali
+        pesanSukses("menambah data asset", "Data asset berhasil ditambahkan!", data);
+
+        // jika pilih y, maka lanjut menambah data asset kembali
+        tambahAsset();
+    }
+
+    // tampilan untuk merubah data asset
+    private static void ubahAsset() {
+        cetakJudul("Ubah Data Asset 📝");
+
+        // pilih asset yang mau diubah
+        int id = pilihNomorAsset("ubah");
+
+        // perbarui data asset sesuai inputan baru user
+        Asset data = inputAsset();
+        data_asset[id-1] = data;
+
+        // tampilkan pesan sukses dan konfirmasi apakah ingin merubah data asset kembali
+        pesanSukses("merubah data asset", "Data asset berhasil diubah!", data);
+
+        // jika pilih y, maka lanjut merubah data asset kembali
+        tambahAsset();
+    }
+
+    // tampilan untuk menghapus data asset
+    private static void hapusAsset() {
+        cetakJudul("Hapus Data Asset ❌");
+
+        // pilih asset yang mau diubah
+        int id = pilihNomorAsset("hapus");
+
+        // konfirmasi apakah yakin ingin menghapus data asset
+        System.out.print(fmt("Apakah anda yakin ingin menghapus "+data_asset[id-1].nama+" ? [y/n] : ", HI_YELLOW));
+        if (bacaInput().equalsIgnoreCase("y")) {
+            // hapus data dengan cara membuat array baru dan mengisi nya dengan data yang lama selain data yang dihapus
+            Asset[] data_asset_baru = new Asset[--jumlah_data_asset];
+            System.arraycopy(data_asset, 0, data_asset_baru, 0, id - 1);
+            System.arraycopy(data_asset, id, data_asset_baru, id - 1, jumlah_data_asset - id + 1);
+            data_asset = data_asset_baru;
+
+            // tampilkan pesan sukses dan konfirmasi apakah ingin menghapus data asset kembali
+            pesanSukses("menghapus data asset", "Data asset berhasil dihapus!");
+        }
+    }
+
+    // keluar dari aplikasi
+    private static void keluar() {
+        System.out.println();
+        System.out.print(fmt("Apakah anda yakin ingin keluar ? [y/n] : ", HI_YELLOW));
+        if (bacaInput().equalsIgnoreCase("y")) {
+            cetakJudul();
+            System.out.println("Terima kasih...");
+            System.out.println();
+            System.out.println(fmt("Copyright © 2023 Kelompok 7 X2E", BLINK_SLOW, HI_CYAN));
+            System.out.println();
+            System.exit(0);
+        } else {
+            menu();
+        }
+    }
+
+    // untuk clear screen (membersihkan tampilan di terminal)
     private static void clearScreen() {
-        // untuk clear screen (membersihkan tampilan di terminal)
         try {
-            if(System.getProperty("os.name").contains("Windows")){
+            if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
-            } else {
-                System.out.println("\033\143");
+            } else if (isSupportANSICode()) {
+                System.out.print("\033\143");
             }
         } catch (Exception ex) {
             System.err.println("Tidak bisa clear screen");
         }
     }
-    
+
+    // tahan tampilan agar tidak langsung di clear
+    private static void tahan() {
+        System.out.println();
+        System.out.print("Silakan tekan "+fmt("ENTER ⏎ ", BLINK_SLOW, HI_CYAN)+" untuk melanjutkan..."); bacaInput();
+    }
+
+    // tampilkan pesan sukses
+    private static void pesanSukses(String aksi, String text, Asset... a) {
+        if (text!="") {        
+            System.out.println("--------------------------------------------");
+            System.out.println();
+            System.out.println(fmt(text, HI_GREEN));
+        }
+        if (a.length>0) {
+            System.out.println();
+            rincianAsset(a[0]);
+        }
+        System.out.println();
+        System.out.print(fmt("Apakah anda ingin "+aksi+ " kembali ? [y/n] : ", HI_MAGENTA));
+        if (!bacaInput().equalsIgnoreCase("y")) {
+            menu();
+        }
+    }
+
+    // tampilkan pesan kesalahan
+    private static void pesanKesalahan(String text) {
+        System.out.println("--------------------------------------------");
+        System.out.println();
+        System.out.println(fmt(text, HI_RED));
+        tahan();
+    }
+
     // tahun ini tahun berapa, terkait perhitungan akumulasi penyusutan
     private static int tahun_ini = LocalDate.now().getYear();
 
@@ -149,6 +357,37 @@ public class AssetManagement {
         lebar_kolom_tabel_asset = new int[]{3, 10, 15, 15, 20, 20, 15};
     }
 
+    // tampilkan inputan untuk memilih asset.
+    private static int pilihNomorAsset(String aksi) {
+        daftarAsset(false);
+
+        // jika data asset nya masih kosong, tampilkan pesan kesalahan.
+        if (jumlah_data_asset==0) {
+            System.out.println();
+            pesanKesalahan("Data asset masih kosong, silakan tambah data asset terlebih dahulu!");
+            menu();
+        }
+
+        System.out.print(fmt("Masukan nomor asset (1-"+jumlah_data_asset+")  : ", HI_MAGENTA)); String inputan = bacaInput();
+        int nilai = toInteger(inputan);
+
+        // validasi input, apabila tidak valid maka beri pesan tidak valid dan kembali ke tampilan inputan
+        if (!isValidNumber(inputan) || nilai<0 || nilai>jumlah_data_asset) {
+            pesanKesalahan("Nomor asset tidak valid! silakan isi dengan angka yang valid atau isi 0 untuk membatalkan.");
+            switch (aksi) {
+                case "rincian": rincianAsset(); break;
+                case "ubah": ubahAsset(); break;
+                case "hapus": hapusAsset(); break;
+            }
+
+        // apabila diisi 0 maka kembali ke menu utama
+        } else if (nilai==0) {
+            menu();
+        }
+
+        return nilai;
+    }
+
     // tampilan input data asset
     private static Asset inputAsset() {
         Asset data = new Asset();
@@ -173,55 +412,48 @@ public class AssetManagement {
     private static AssetCategory inputKategori() {
 
         // tampilkan pilihan kategori dengan tabel yang rapih
-        helper.cetakTabel(judul_kolom_tabel_kategori_asset, lebar_kolom_tabel_kategori_asset, isi_data_tabel_kategori_asset, jumlah_data_kategori_asset);
-        System.out.print("Pilih kategori (1-5) : "); String inputan = helper.bacaInput();
+        cetakTabel(judul_kolom_tabel_kategori_asset, lebar_kolom_tabel_kategori_asset, isi_data_tabel_kategori_asset, jumlah_data_kategori_asset);
+        System.out.print(fmt("Pilih kategori asset (1-5)    : ", HI_MAGENTA)); String inputan = bacaInput();
 
-        int nilai = helper.toInteger(inputan);
+        int nilai = toInteger(inputan);
         
-        // keterangan kategori yang telah dipilih
-        if (nilai == 1) System.out.println("\n1. Kategori yang anda pilih adalah Tanah dengan tanpa metode penyusutan =\n");
-        else if (nilai == 2) System.out.println("\n2. Kategori yang anda pilih adalah Gedung dengan metode penyusutan garis lurus =\n");
-        else if (nilai == 3) System.out.println("\n3. Kategori yang anda pilih adalah Kendaraan(mobil) dengan metode penyusutan garis lurus =\n");
-        else if (nilai == 4) System.out.println("\n4. Kategori yang anda pilih adalah Kendaraan(motor) dengan metode penyusutan garis lurus =\n");
-        else if (nilai == 5) System.out.println("\n5. Kategori yang anda pilih adalah Peralatan dengan metode penyusutan garis lurus =\n");
         // validasi input, apabila tidak valid maka beri pesan tidak valid dan kembali ke tampilan inputan
-        if (!helper.isValidNumber(inputan) || nilai<0 || nilai > jumlah_data_kategori_asset) {
-            System.out.println();
-            System.out.println("Kategori tidak valid! silakan isi sesuai nomor kategori yang valid atau isi 0 untuk membatalkan."); 
-            System.out.println();
+        if (!isValidNumber(inputan) || nilai<0 || nilai > jumlah_data_kategori_asset) {
+            pesanKesalahan("Kategori tidak valid! silakan isi sesuai nomor kategori yang valid atau isi 0 untuk membatalkan."); 
             return inputKategori();
 
         // apabila diisi 0 maka kembali ke menu utama
         } else if (nilai==0) {
-            cetakJudul();
             menu();
         }
 
         // jika valid maka tampilkan sesuai index
-        return data_kategori_asset[nilai-1];
+        AssetCategory kategoriTerpilih = data_kategori_asset[nilai-1];
+
+        // tampilkan keterangan kategori yang sudah dipilih
+        // System.out.println(kategoriTerpilih.nama);
+
+        return kategoriTerpilih;
     }
 
     // tampilkan inputan untuk mengisi nama asset.
     private static String inputNama() {
-        System.out.print("Masukan nama asset : "); 
-        return helper.bacaInput();
+        System.out.print(fmt("Masukan nama asset            : ", HI_MAGENTA)); 
+        return bacaInput();
     }
 
     // tampilkan inputan untuk mengisi tahun perolehan asset.
     private static int inputTahunPerolehan() {
-        System.out.print("Masukan tahun perolehan asset : "); String inputan = helper.bacaInput();
-        int nilai = helper.toInteger(inputan);
+        System.out.print(fmt("Masukan tahun perolehan asset : ", HI_MAGENTA)); String inputan = bacaInput();
+        int nilai = toInteger(inputan);
 
         // validasi input, apabila tidak valid maka beri pesan tidak valid dan kembali ke tampilan inputan
-        if (!helper.isValidNumber(inputan) || nilai<1900 || nilai > tahun_ini) {
-            System.out.println();
-            System.out.println("Tahun perolehan tidak valid! silakan isi dengan tahun yang valid atau isi 0 untuk membatalkan."); 
-            System.out.println();
+        if (!isValidNumber(inputan) || nilai<1900 || nilai > tahun_ini) {
+            pesanKesalahan("Tahun perolehan tidak valid! silakan isi dengan tahun yang valid atau isi 0 untuk membatalkan."); 
             return inputTahunPerolehan();
 
         // apabila diisi 0 maka kembali ke menu utama
         } else if (nilai==0) {
-            cetakJudul();
             menu();
         }
 
@@ -230,19 +462,16 @@ public class AssetManagement {
 
     // tampilkan inputan untuk mengisi nilai perolehan asset.
     private static int inputNilaiPerolehan() {
-        System.out.print("Masukan nilai perolehan asset : "); String inputan = helper.bacaInput();
-        int nilai = helper.toInteger(inputan);
+        System.out.print(fmt("Masukan nilai perolehan asset : ", HI_MAGENTA)); String inputan = bacaInput();
+        int nilai = toInteger(inputan);
 
         // validasi input, apabila tidak valid maka beri pesan tidak valid dan kembali ke tampilan inputan
-        if (!helper.isValidNumber(inputan) || nilai<0) {
-            System.out.println();
-            System.out.println("Nilai perolehan tidak valid! silakan isi dengan angka yang valid atau isi 0 untuk membatalkan."); 
-            System.out.println();
+        if (!isValidNumber(inputan) || nilai<0) {
+            pesanKesalahan("Nilai perolehan tidak valid! silakan isi dengan angka yang valid atau isi 0 untuk membatalkan."); 
             return inputNilaiPerolehan();
 
         // apabila diisi 0 maka kembali ke menu utama
         } else if (nilai==0) {
-            cetakJudul();
             menu();
         }
 
@@ -251,274 +480,27 @@ public class AssetManagement {
 
     // tampilkan inputan untuk mengisi nilai residu asset.
     private static int inputNilaiResidu() {
-        System.out.print("Masukan nilai residu asset : "); String inputan = helper.bacaInput();
-        int nilai = helper.toInteger(inputan);
+        System.out.print(fmt("Masukan nilai residu asset    : ", HI_MAGENTA)); String inputan = bacaInput();
+        int nilai = toInteger(inputan);
 
         // validasi input, apabila tidak valid maka beri pesan tidak valid dan kembali ke tampilan inputan
-        if (!helper.isValidNumber(inputan) || nilai<0) {
-            System.out.println();
-            System.out.println("Nilai residu tidak valid! silakan isi dengan angka yang valid atau isi 0 untuk membatalkan."); 
-            System.out.println();
+        if (!isValidNumber(inputan) || nilai<0) {
+            pesanKesalahan("Nilai residu tidak valid! silakan isi dengan angka yang valid atau isi 0 untuk membatalkan."); 
             return inputNilaiResidu();
 
         // apabila diisi 0 maka kembali ke menu utama
         } else if (nilai==0) {
-            cetakJudul();
             menu();
         }
 
         return nilai;
     }
 
-    // tampilkan inputan untuk memilih asset.
-    private static int pilihNomorAsset() {
-        daftarAsset(false);
-        System.out.print("Masukan nomor asset : "); String inputan = helper.bacaInput();
-        int nilai = helper.toInteger(inputan);
-
-        // validasi input, apabila tidak valid maka beri pesan tidak valid dan kembali ke tampilan inputan
-        if (!helper.isValidNumber(inputan) || nilai<0 || nilai>jumlah_data_asset) {
-            System.out.println();
-            System.out.println("Nomor asset tidak valid! silakan isi dengan angka yang valid atau isi 0 untuk membatalkan."); 
-            System.out.println();
-            return pilihNomorAsset();
-
-        // apabila diisi 0 maka kembali ke menu utama
-        } else if (nilai==0) {
-            cetakJudul();
-            menu();
-        }
-
-        return nilai;
-    }
-
-    // menampilkan daftar asset
-    private static void daftarAsset(Boolean navigasi) {
-        if (navigasi) {        
-            System.out.println();
-            System.out.println("📋 Daftar Asset");
-        }
-
-        for (int i = 0; i < jumlah_data_asset; i++) {
-            int umur_ekonomis = data_asset[i].kategori.umur_ekonomis;
-            int tahun_perolehan = data_asset[i].tahun_perolehan;
-            double nilai_perolehan = Double.valueOf(data_asset[i].nilai_perolehan);
-            double penyusutan_per_tahun = Double.valueOf(data_asset[i].penyusutan_per_tahun);
-            double akumulasi_penyusutan = 0;
-            double nilai_buku = nilai_perolehan;
-            if (umur_ekonomis>0) {
-                akumulasi_penyusutan = penyusutan_per_tahun * (tahun_ini - tahun_perolehan);
-                nilai_buku = nilai_perolehan - akumulasi_penyusutan;
-            }
-
-            isi_data_tabel_asset[i][0] = Integer.toString(i + 1);
-            isi_data_tabel_asset[i][1] = data_asset[i].nama;
-            isi_data_tabel_asset[i][2] = Integer.toString(tahun_perolehan);
-            isi_data_tabel_asset[i][3] = helper.formatAngka(nilai_perolehan);
-            isi_data_tabel_asset[i][4] = helper.formatAngka(penyusutan_per_tahun);
-            isi_data_tabel_asset[i][5] = helper.formatAngka(akumulasi_penyusutan);
-            isi_data_tabel_asset[i][6] = helper.formatAngka(nilai_buku);
-        }
-        helper.cetakTabel(judul_kolom_tabel_asset, lebar_kolom_tabel_asset, isi_data_tabel_asset, jumlah_data_asset);
-
-        if (navigasi) {
-            menu();
-        }
-    }
-
-    // menampilkan rincian asset
-    private static void rincianAsset() {
-        System.out.println();
-        System.out.println("🗂️  Rincian Data Asset");
-
-        // pilih asset yang mau diubah
-        int id = pilihNomorAsset();
-        System.out.println();
-
-        // persiapkan data yang ingin ditampilkan
-        Asset data = data_asset[id-1];
-        String umur_ekonomis_string = "-";
-        int umur_ekonomis = data.kategori.umur_ekonomis;
-        int tahun_perolehan = data.tahun_perolehan;
-        double penyusutan_per_tahun = data.penyusutan_per_tahun;
-        double akumulasi_penyusutan = 0;
-        double nilai_buku = 0;
-        if (umur_ekonomis>0) {
-            umur_ekonomis_string = umur_ekonomis + " Tahun";
-            akumulasi_penyusutan = penyusutan_per_tahun * (tahun_ini - tahun_perolehan);
-            nilai_buku = data.nilai_perolehan - akumulasi_penyusutan;
-        }
-
-        // tampilkan rincian dari asset yang dipilih
-        System.out.println("Nama Asset           : " + data.nama);
-        System.out.println("Nama Kategori Asset  : " + data.kategori.nama);
-        System.out.println("Metode Penyusutan    : " + data.kategori.metode_penyusutan);
-        System.out.println("Umur Ekonomis        : " + umur_ekonomis_string);
-        System.out.println("Tahun Perolehan      : " + tahun_perolehan);
-        System.out.println("Nilai Perolehan      : " + helper.formatAngka(Double.valueOf(data.nilai_perolehan)));
-        System.out.println("Nilai Residu         : " + helper.formatAngka(Double.valueOf(data.nilai_residu)));
-        System.out.println("Penyusutan Per Tahun : " + helper.formatAngka(penyusutan_per_tahun));
-        System.out.println("Akumulasi Penyusutan : " + helper.formatAngka(akumulasi_penyusutan));
-        System.out.println("Nilai Buku           : " + helper.formatAngka(nilai_buku));
-        
-        //pilih lanjut atau tidak
-        Scanner s = new Scanner(System.in);
-        String milih;
-        boolean lagi = true;
-        
-        System.out.println("\n===============================\n");
-        System.out.print("Apakah anda ingin melihat rincian asset lagi? [y/n] "); milih = s.next();
-        
-        if(lagi = milih.equalsIgnoreCase("y")) {
-            lagi = true; clearScreen(); rincianAsset();
-        }else{
-            clearScreen(); cetakJudul(); menu();
-        }
-    }
-
-    // tampilan untuk menambahkan data asset
-    private static void tambahAsset() {
-        System.out.println();
-        System.out.println("➕ Tambah Data Asset");
-
-        // pastikan kapasitas array nya masih cukup, apabila kurang maka lipatgandakan kapasitas nya terlebih dahulu
-        if (jumlah_data_asset == data_asset.length) {
-            isi_data_tabel_asset = new String[data_asset.length * 2][7];
-            Asset[] data_asset_baru = new Asset[data_asset.length * 2];
-            System.arraycopy(data_asset, 0, data_asset_baru, 0, data_asset.length);
-            data_asset = data_asset_baru;
-        }
-
-        // input data asset dan tambahkan kedalam array
-        data_asset[jumlah_data_asset] = inputAsset();
-        jumlah_data_asset++;
-
-        System.out.println();
-        System.out.println("Data asset berhasil ditambahkan!");
-
-        //lihat daftar asset yang telah ditambahkan
-        daftarAsset(false);
-        
-        //pilih lanjut atau tidak
-        Scanner s = new Scanner(System.in);
-        String milih;
-        boolean lagi = true;
-        
-        System.out.println("\n===============================\n");
-        System.out.print("Apakah anda ingin tambah asset lagi? [y/n] "); milih = s.next();
-        
-        if(lagi = milih.equalsIgnoreCase("y")) {
-            lagi = true; clearScreen(); tambahAsset();
-        }else{
-            clearScreen(); cetakJudul(); menu();
-        }
-    }
-
-    // tampilan untuk merubah data asset
-    private static void ubahAsset() {
-        System.out.println();
-        System.out.println("📝 Ubah Data Asset");
-
-        // pilih asset yang mau diubah
-        int id = pilihNomorAsset();
-
-        // perbarui data asset sesuai inputan baru user
-        data_asset[id-1] = inputAsset();
-
-        System.out.println();
-        System.out.println("Data asset berhasil diubah!");
-        
-        //lihat daftar asset yang telah diubah
-        daftarAsset(false);
-        
-        //pilih lanjut atau tidak
-        Scanner s = new Scanner(System.in);
-        String milih;
-        boolean lagi = true;
-        
-        System.out.println("\n===============================\n");
-        System.out.print("Apakah anda ingin ubah asset lagi? [y/n] "); milih = s.next();
-        
-        if(lagi = milih.equalsIgnoreCase("y")) {
-            lagi = true; clearScreen(); ubahAsset();
-        }else{
-            clearScreen(); cetakJudul(); menu();
-        }
-    }
-
-    // tampilan untuk menghapus data asset
-    private static void hapusAsset() {
-        System.out.println();
-        System.out.println("❌ Hapus Data Asset");
-
-        // pilih asset yang mau diubah
-        int id = pilihNomorAsset();
-
-        // hapus data dengan cara membuat array baru dan mengisi nya dengan data yang lama selain data yang dihapus
-        Asset[] data_asset_baru = new Asset[--jumlah_data_asset];
-        System.arraycopy(data_asset, 0, data_asset_baru, 0, id - 1);
-        System.arraycopy(data_asset, id, data_asset_baru, id - 1, jumlah_data_asset - id + 1);
-        data_asset = data_asset_baru;
-
-        System.out.println();
-        System.out.println("Data asset berhasil dihapus!");
-        
-         //pilih lanjut atau tidak
-        Scanner s = new Scanner(System.in);
-        String milih;
-        boolean lagi = true;
-        
-        System.out.println("\n===============================\n");
-        System.out.print("Apakah anda ingin hapus asset lagi? [y/n] "); milih = s.next();
-        
-        if(lagi = milih.equalsIgnoreCase("y")) {
-            lagi = true; clearScreen(); hapusAsset();
-        }else{
-            clearScreen(); cetakJudul(); menu();
-        }
-    }
-}
-
-// class untuk mendefinisikan objek asset
-class Asset {
-
-    public AssetCategory kategori; // kategori asset
-
-    public String nama; // nama asset
-
-    public int tahun_perolehan; // tahun perolehan
-
-    public int nilai_perolehan; // nilai perolehan
-
-    public int nilai_residu; // nilai residu
-
-    public double penyusutan_per_tahun; // penyusutan per tahun
-}
-
-// class untuk mendefinisikan objek kategori asset
-class AssetCategory {
-
-    public String nama; // nama kategori asset
-
-    public String metode_penyusutan; // metode penyusutan
-
-    public int umur_ekonomis; // umur ekonomis
-
-    public AssetCategory(String nama, String metode_penyusutan, int umur_ekonomis) {
-        this.nama = nama;
-        this.metode_penyusutan = metode_penyusutan;
-        this.umur_ekonomis = umur_ekonomis;
-    }
-}
-
-// class bantuan untuk penerapan DRY (Dont Repeat Your Self) principle 
-// sehingga kodingan nya menjadi lebih rapih, tidak banyak pengulangan hal yang sama.
-class helper {
-
+    // tampung scanner untuk pembacaan input user
     private static Scanner scanner;
 
     // pembacaan input oleh user
-    public static String bacaInput() {
+    private static String bacaInput() {
         if (scanner == null) {
             scanner = new Scanner(System.in);
         }
@@ -526,7 +508,7 @@ class helper {
     }
 
     // validasi apakah yang diinput oleh user merupakan angka atau bukan.
-    public static Boolean isValidNumber(String str) {
+    private static Boolean isValidNumber(String str) {
         try {
             Integer.parseInt(str);
             return true;
@@ -536,7 +518,7 @@ class helper {
     }
 
     // konversi dari string ke int dengan mengabaikan error.
-    public static int toInteger(String str) {
+    private static int toInteger(String str) {
         int res = 0;
         try {
             res = Integer.parseInt(str);
@@ -547,12 +529,12 @@ class helper {
     }
 
     // format angka pecahan dengan pemisah ribuan menggunakan titik tanpa desimal.
-    public static String formatAngka(double angka) {
+    private static String formatAngka(double angka) {
         return String.format("%,.0f", angka).replace(',', '.');
     }
 
     // cetak tabel biar rapih
-    public static void cetakTabel(String[] judul_kolom, int[] lebar_kolom, String[][] isi_data, int jumlah_data) {
+    private static void cetakTabel(String[] judul_kolom, int[] lebar_kolom, String[][] isi_data, int jumlah_data) {
         cetakGaris(lebar_kolom);
         cetakBaris(judul_kolom, lebar_kolom);
         cetakGaris(lebar_kolom);
@@ -565,7 +547,7 @@ class helper {
     }
 
     // cetak garis dari suatu tabel
-    public static void cetakGaris(int[] lebar_kolom) {
+    private static void cetakGaris(int[] lebar_kolom) {
         for (int l : lebar_kolom) {
             System.out.print("+-");
             for (int i = 0; i < l; i++) {
@@ -577,16 +559,16 @@ class helper {
     }
 
     // cetak baris dari suatu tabel
-    public static void cetakBaris(String[] kolom, int[] lebar_kolom) {
+    private static void cetakBaris(String[] kolom, int[] lebar_kolom) {
         for (int i = 0; i < kolom.length; i++) {
             System.out.print("|");
-            helper.cetakCell(kolom[i], lebar_kolom[i]);
+            cetakCell(kolom[i], lebar_kolom[i]);
         }
         System.out.println("|");
     }
 
     // cetak cell dari suatu tabel
-    public static void cetakCell(String teks, int length) {
+    private static void cetakCell(String teks, int length) {
         int maxLength = (length - teks.length() + 1);
 
         // untuk angka maka rata kanan
@@ -606,6 +588,74 @@ class helper {
             }
         }
     }
-    
 
+    // cek apakah console yang digunakan support kode ANSI atau tidak
+    // untuk windows umum nya tidak support https://superuser.com/questions/413073/windows-console-with-ansi-colors-handling
+    private static boolean isSupportANSICode() {
+        return System.console() != null && System.getenv().get("TERM") != null;
+    }
+
+    // format teks dengan atribut tertentu
+    private static String fmt(String text, int... attribute) {
+
+        // apabila tidak support kode ANSI maka atribut diabaikan
+        if (!isSupportANSICode()) {
+            return text;
+        }
+
+        String format = "0";
+        int i = 0;
+        for (int att : attribute) {
+            if (++i > 0) {
+                format += ";";
+            } else {
+                format = "";
+            }
+            format += Integer.toString(att);
+        }
+        return "\033["+format+"m"+text+"\033[0m";
+    }
+
+    private static final int RESET = 0;
+    private static final int BOLD = 1;
+    private static final int FAINT = 2;
+    private static final int ITALIC = 3;
+    private static final int UNDERLINE = 4; 
+    private static final int BLINK_SLOW = 5;
+    private static final int BLINK_RAPID = 6;
+    private static final int REVERSE_VIDEO = 7;
+    private static final int CONCEALED = 8;
+    private static final int CROSSED_OUT = 9;
+    private static final int BLACK = 30;
+    private static final int RED = 31;
+    private static final int GREEN = 32;
+    private static final int YELLOW = 33;
+    private static final int BLUE = 34;
+    private static final int MAGENTA = 35;
+    private static final int CYAN = 36;
+    private static final int WHITE = 37;
+    private static final int HI_BLACK = 90;
+    private static final int HI_RED = 91;
+    private static final int HI_GREEN = 92;
+    private static final int HI_YELLOW = 93;
+    private static final int HI_BLUE = 94;
+    private static final int HI_MAGENTA = 95;
+    private static final int HI_CYAN = 96;
+    private static final int HI_WHITE = 97;
+    private static final int BG_BLACK = 40;
+    private static final int BG_RED = 42;
+    private static final int BG_GREEN = 43;
+    private static final int BG_YELLOW = 44;
+    private static final int BG_BLUE = 45;
+    private static final int BG_MAGENTA = 46;
+    private static final int BG_CYAN = 47;
+    private static final int BG_WHITE = 48;
+    private static final int BG_HI_BLACK = 100;
+    private static final int BG_HI_RED = 101;
+    private static final int BG_HI_GREEN = 102;
+    private static final int BG_HI_YELLOW = 103;
+    private static final int BG_HI_BLUE = 104;
+    private static final int BG_HI_MAGENTA = 105;
+    private static final int BG_HI_CYAN = 106;
+    private static final int BG_HI_WHITE = 107;
 }
