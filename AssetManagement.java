@@ -85,16 +85,19 @@ public class AssetManagement {
             case "0": keluar(); break;
             default: 
                 pesanKesalahan("Nomor menu tidak valid! silakan pilih menu dengan angka 0 sampai 5.");
-                menu(); break;
+                menu();
+                break;
         }
     }
 
     // menampilkan daftar asset
-    private static void daftarAsset(Boolean navigasi) {
+    private static void daftarAsset(boolean navigasi) {
+        // jika dari navigasi menu, maka tampilkan judul menu nya
         if (navigasi) {        
             cetakJudul("Daftar Asset 🗂️");
         }
 
+        // susun terlebih dahulu data yang ingin ditampilkan ke tabel
         for (int i = 0; i < jumlah_data_asset; i++) {
             int umur_ekonomis = data_asset[i].kategori.umur_ekonomis;
             int tahun_perolehan = data_asset[i].tahun_perolehan;
@@ -123,8 +126,10 @@ public class AssetManagement {
             isi_data_tabel_asset[i][5] = formatAngka(akumulasi_penyusutan);
             isi_data_tabel_asset[i][6] = formatAngka(nilai_buku);
         }
+        // tampilkan tabel daftar data asset yang rapih
         cetakTabel(judul_kolom_tabel_asset, lebar_kolom_tabel_asset, isi_data_tabel_asset, jumlah_data_asset);
 
+        // jika dari navigasi menu, maka tahan dan kembali ke menu utama
         if (navigasi) {
             tahan();
             menu();
@@ -134,9 +139,9 @@ public class AssetManagement {
     // menampilkan rincian asset
     private static void rincianAsset(Asset... a) {
         Asset data = new Asset();
-        if (a.length>0) {
-            data = a[0];
-        } else {            
+
+        // jika dari navigasi menu, maka tampilkan judul menu nya dan munculkan interaksi pilih asset
+        if (a.length==0) {
             cetakJudul("Rincian Data Asset 📋");
 
             // pilih asset yang mau diubah
@@ -145,6 +150,10 @@ public class AssetManagement {
 
             // persiapkan data yang ingin ditampilkan
             data = data_asset[id-1];
+
+        // jika dari tambah atau ubah asset, tampilkan rincian asset nya saja
+        } else {            
+            data = a[0];
         }
         String umur_ekonomis_string = "-";
         int umur_ekonomis = data.kategori.umur_ekonomis;
@@ -154,7 +163,7 @@ public class AssetManagement {
         double penyusutan_per_tahun = data.penyusutan_per_tahun;
         double akumulasi_penyusutan = 0;
         double nilai_buku = nilai_perolehan;
-        
+
         // jika umur ekonomis nya lebih dari 0, maka hitung akumulasi penyusutan nya
         if (umur_ekonomis>0) {
             umur_ekonomis_string = umur_ekonomis + " Tahun";
@@ -180,6 +189,7 @@ public class AssetManagement {
         System.out.println("Akumulasi Penyusutan : " + formatAngka(akumulasi_penyusutan));
         System.out.println("Nilai Buku           : " + formatAngka(nilai_buku));
         
+        // jika dari navigasi menu, maka konfirmasi apakah ingin melihat rincian asset yang lain atau tidak
         if (a.length==0) {
             pesanSukses("melihat rincian asset", "");
             rincianAsset();
@@ -232,12 +242,13 @@ public class AssetManagement {
     private static void hapusAsset() {
         cetakJudul("Hapus Data Asset ❌");
 
-        // pilih asset yang mau diubah
+        // pilih asset yang mau dihapus
         int id = pilihNomorAsset("hapus");
 
         // konfirmasi apakah yakin ingin menghapus data asset
         System.out.print(fmt("Apakah anda yakin ingin menghapus "+data_asset[id-1].nama+" ? [y/n] : ", HI_YELLOW));
         if (bacaInput().equalsIgnoreCase("y")) {
+
             // hapus data dengan cara membuat array baru dan mengisi nya dengan data yang lama selain data yang dihapus
             Asset[] data_asset_baru = new Asset[--jumlah_data_asset];
             System.arraycopy(data_asset, 0, data_asset_baru, 0, id - 1);
@@ -271,8 +282,11 @@ public class AssetManagement {
     // untuk clear screen (membersihkan tampilan di terminal)
     private static void clearScreen() {
         try {
+            // apabila menggunakan os windows maka lakukan perintah cls di cmd
             if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
+
+            // apabila tidak menggunakan os windows dan support kode ANSI maka clear menggunakan kode ANSI
             } else if (isSupportANSICode()) {
                 System.out.print("\033\143");
             }
@@ -511,7 +525,7 @@ public class AssetManagement {
     }
 
     // validasi apakah yang diinput oleh user merupakan angka atau bukan.
-    private static Boolean isValidNumber(String str) {
+    private static boolean isValidNumber(String str) {
         try {
             Integer.parseInt(str);
             return true;
