@@ -225,7 +225,7 @@ public class AssetManagement {
         pesanSukses("merubah data asset", "Data asset berhasil diubah!", data);
 
         // jika pilih y, maka lanjut merubah data asset kembali
-        tambahAsset();
+        ubahAsset();
     }
 
     // tampilan untuk menghapus data asset
@@ -246,6 +246,9 @@ public class AssetManagement {
 
             // tampilkan pesan sukses dan konfirmasi apakah ingin menghapus data asset kembali
             pesanSukses("menghapus data asset", "Data asset berhasil dihapus!");
+
+            // jika pilih y, maka lanjut menghapus data asset kembali
+            hapusAsset();
         }
     }
 
