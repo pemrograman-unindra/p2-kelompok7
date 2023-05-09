@@ -11,7 +11,7 @@ Ini adalah aplikasi asset management sederhana, tugas Pemrograman 2 Kelompok 7 K
 
 ## Memulai
 1. Pastikan komputer kamu sudah terinstall [Git](https://git-scm.com/) dan [Java Development Kit](http://jdk.java.net/).
-2. Kloning repositori ini ke komputer kamu dan masuk ke folder restoran dari terminal atau cmd
+2. Kloning repositori ini ke komputer kamu dan masuk ke folder p2-kelompok7 dari terminal atau cmd
 	```bash
 	git clone https://github.com/pemrograman-unindra/p2-kelompok7.git && cd p2-kelompok7
 	```
