@@ -46,12 +46,12 @@ public class AssetManagement {
         System.out.println(fmt("+--------------+---------------------------+", HI_GREEN));
         System.out.println(fmt("| NPM          | Nama                      |", HI_GREEN));
         System.out.println(fmt("+--------------+---------------------------+", HI_GREEN));
-        System.out.println(fmt("| 202243500497 | Alfarobby                 |", HI_GREEN));
-        System.out.println(fmt("| 202243500500 | Ahmad Badawi              |", HI_GREEN));
-        System.out.println(fmt("| 202243500501 | Abdur Rosyid Fachriansyah |", HI_GREEN));
-        System.out.println(fmt("| 202243500502 | Sangga Buana              |", HI_GREEN));
-        System.out.println(fmt("| 202243500524 | Riyan Rizaldy             |", HI_GREEN));
         System.out.println(fmt("| 202243570024 | Jeffry Luqman             |", HI_GREEN));
+        System.out.println(fmt("| 202243500524 | Riyan Rizaldy             |", HI_GREEN));
+        System.out.println(fmt("| 202243500500 | Ahmad Badawi              |", HI_GREEN));
+        System.out.println(fmt("| 202243500502 | Sangga Buana              |", HI_GREEN));
+        System.out.println(fmt("| 202243500497 | Alfarobby                 |", HI_GREEN));
+        System.out.println(fmt("| 202243500501 | Abdur Rosyid Fachriansyah |", HI_GREEN));
         System.out.println(fmt("+--------------+---------------------------+", HI_GREEN));
     }
 
@@ -257,10 +257,8 @@ public class AssetManagement {
 
             // tampilkan pesan sukses dan konfirmasi apakah ingin menghapus data asset kembali
             pesanSukses("menghapus data asset", "Data asset berhasil dihapus!");
-
-            // jika pilih y, maka lanjut menghapus data asset kembali
-            hapusAsset();
         }
+        hapusAsset();
     }
 
     // keluar dari aplikasi
