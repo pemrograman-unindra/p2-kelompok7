@@ -2,12 +2,15 @@
 Ini adalah aplikasi asset management sederhana, tugas Pemrograman 2 Kelompok 7 Kelas X2E
 
 ## Anggota
-1. 202243500501 - [Abdur Rosyid Fachriansyah](https://github.com/dellwatch21) 
-2. 202243570024 - [Jeffry Luqman](https://github.com/jeffry-luqman)
-3. 202243500497 - [Alfarobby](https://github.com/Alfarobby27)
-4. 202243500500 - [Ahmad Badawi](https://github.com/Ahmadbadawi123)
-5. 202243500502 - [Sangga Buana](https://github.com/sanggabuana453)
-6. 202243500524 - [Riyan Rizaldy](https://github.com/riyanzaldy03)
+
+NPM          | Nama                                                        | Pembagian Tugas
+-------------|-------------------------------------------------------------|--------------------------
+202243570024 | [Jeffry Luqman](https://github.com/jeffry-luqman)           | Base Project & finishing
+202243500524 | [Riyan Rizaldy](https://github.com/riyanzaldy03)            | Daftar asset
+202243500500 | [Ahmad Badawi](https://github.com/Ahmadbadawi123)           | Rincian asset
+202243500502 | [Sangga Buana](https://github.com/sanggabuana453)           | Tambah asset
+202243500497 | [Alfarobby](https://github.com/Alfarobby27)                 | Ubah asset
+202243500501 | [Abdur Rosyid Fachriansyah](https://github.com/dellwatch21) | Hapus Asset
 
 ## Memulai
 1. Pastikan komputer kamu sudah terinstall [Git](https://git-scm.com/) dan [Java Development Kit](http://jdk.java.net/).

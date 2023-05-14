@@ -250,9 +250,14 @@ public class AssetManagement {
         if (bacaInput().equalsIgnoreCase("y")) {
 
             // hapus data dengan cara membuat array baru dan mengisi nya dengan data yang lama selain data yang dihapus
-            Asset[] data_asset_baru = new Asset[--jumlah_data_asset];
-            System.arraycopy(data_asset, 0, data_asset_baru, 0, id - 1);
-            System.arraycopy(data_asset, id, data_asset_baru, id - 1, jumlah_data_asset - id + 1);
+            Asset[] data_asset_baru = new Asset[data_asset.length];
+            int j = 0;
+            for (int i = 0; i < jumlah_data_asset; i++) {
+                if (i != id) {
+                    data_asset_baru[j++] = data_asset[i];
+                }
+            }
+            jumlah_data_asset--;
             data_asset = data_asset_baru;
 
             // tampilkan pesan sukses dan konfirmasi apakah ingin menghapus data asset kembali
