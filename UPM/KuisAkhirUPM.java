@@ -1,238 +1,159 @@
-// import scanner
 import java.util.Scanner;
+
 public class KuisAkhirUPM {
 
-        // tampilkan judul menu
-        private static void cetakJudul(String judul) {
-            System.out.println("--------------------------------------------------------------");
-            System.out.println(judul);
-            System.out.println("--------------------------------------------------------------");
+    public static void main(String[]args) {
+
+        System.out.println("+--------------+---------------------------+-----------------+");
+        System.out.println("| NPM          | Nama                      | Pembagian Tugas |");
+        System.out.println("+--------------+---------------------------+-----------------+");
+        System.out.println("| 202243500497 | Alfarobby                 | Menu No. 1      |");
+        System.out.println("| 202243500500 | Ahmad Badawi              | Menu No. ?      |");
+        System.out.println("| 202243500501 | Abdur Rosyid Fachriansyah | Menu No. ?      |");
+        System.out.println("| 202243500502 | Sangga Buana              | Menu No. ?      |");
+        System.out.println("| 202243500524 | Riyan Rizaldy             | Menu No. ?      |");
+        System.out.println("| 202243570024 | Jeffry Luqman             | Menu No. 6      |");
+        System.out.println("+--------------+---------------------------+-----------------+");
+
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Silahkan tentukan pilihan menu yang mau anda kerjakan");
+        System.out.print("Mulai tentukan pilihan anda [y/t] ? "); String tampilkanMenu = s.nextLine();
+
+        while (tampilkanMenu.equalsIgnoreCase("y")) {
+
             System.out.println();
-        }
+            System.out.println("1 : Pilih > Tarif Sewa Kendaraan [if bersarang]");            
+            System.out.println("2 : Pilih > Perubahan Kelipatan angka dengan '#' [while]");
+            System.out.println("3 : Pilih > Membuat Kelipatan Angka Akhir [do while]");
+            System.out.println("4 : Pilih > Perulangan 'X' dan 'O' [for]");            
+            System.out.println("5 : Pilih > Data Penjualan Gamis [array 1D]");
+            System.out.println("6 : Pilih > Pendaftaran Mahasiswa Baru [array 2D]");
+            System.out.print("Masukkan pilihan anda : "); int menuDipilih = s.nextInt();
+            System.out.println();
 
-        private static Scanner s = new Scanner(System.in);
-
-        public static void main(String[]args) {
-            System.out.println("Silahkan tentukan pilihan menu yang mau anda kerjakan");
-            System.out.print("Mulai tentukan pilihan anda [y/t] ? "); String mulai = s.nextLine();
-            while( mulai.equalsIgnoreCase("y") ) {
-                    clearScreen();
-                    cetakJudul("Pilih Menu");
-                    System.out.println("1 : Pilih > Tarif Sewa Kendaraan [if bersarang]");            
-                    System.out.println("2 : Pilih > Perubahan Kelipatan angka dengan '#' [while]");
-                    System.out.println("3 : Pilih > Membuat Kelipatan Angka Akhir [do while]");
-                    System.out.println("4 : Pilih > Perulangan 'X' dan 'O' [for]");            
-                    System.out.println("5 : Pilih > Data Penjualan Gamis [array 10]");
-                    System.out.println("6 : Pilih > Pendaftaran Mahasiswa Baru [array 20]");
+            switch (menuDipilih) {
+                case 1 :
+                    System.out.println("-------------------------------------");
+                    System.out.println(" * MENGHITUNG TARIF SEWA KENDARAAN * ");
+                    System.out.println("-------------------------------------");
+                    System.out.println("* Promo IDUL ADHA*");
+                    System.out.println("# Kendaraan >= 3 #");
+                    System.out.println("- Lama Sewa >= 3 hari Potongan 200.000");
+                    System.out.println("- Lama Sewa <= 2 hari Potongan 100.000");
+                    System.out.println("# Kendaraan <= 2 #");
+                    System.out.println("- Lama Sewa >= 3 hari Potongan 50.000");
+                    System.out.println("- Lama Sewa <= 2 hari tidak dapat Potongan");
                     System.out.println();
-                    System.out.print("Masukkan pilihan anda : "); String pilih = s.next();
-                    switch(pilih) {
-                        case "1": boolean lanjut = true;
-                                    while(lanjut) {
-                                        clearScreen();
-                                        cetakJudul(" * MENGHITUNG TARIF SEWA KENDARAAN * ");
-                                        System.out.println("* Promo Idul Adha *");                                    
-                                        System.out.println("# Kendaraan >= 3 #");
-                                        System.out.println("- Lama Sewa >= 3 hari Potongan 200.000 ");                        
-                                        System.out.println("- Lama Sewa <= 2 hari Potongan 100.000 ");                                    
-                                        System.out.println("# Kendaraan <= 2 #");
-                                        System.out.println("- Lama Sewa >= 3 hari Potongan 50.000");                                    
-                                        System.out.println("- Lama Sewa <= 2 hari tidak dapat Potongan ");
-                                        System.out.println();
-                                        
-                                        System.out.print("Masukkan Penyewa Kendaraan     : "); String namaSewa = s.next();                                   
-                                        System.out.print("Masukkan Jumlah Kendaraan Sewa : "); int jumlahKendaraan = s.nextInt();
-                                        System.out.print("Masukkan Lama Sewa (Hari)      : "); int lamaSewa = s.nextInt();
-                                        System.out.println();
 
-                                        int harga = 200000*jumlahKendaraan;
-                                        System.out.println("=== RINCIAN PEMBAYARAN ===");
-                                        System.out.println();
-                                        System.out.println("Nama Penyewa          : " + namaSewa);
-                                        System.out.println("Harga Kendaraan       : " + harga);
+                    System.out.print("Masukkan Penyewa Kendaraan     : "); String namaPenyewa = s.next();                                   
+                    System.out.print("Masukkan Jumlah Kendaraan Sewa : "); int jumlahKendaraan = s.nextInt();
+                    System.out.print("Masukkan Lama Sewa (Hari)      : "); int lamaSewa = s.nextInt();
+                    System.out.println();
 
-                                        int potongan;
-                                        if( jumlahKendaraan >= 3 ) {
-                                            if( lamaSewa >= 3 ) {
-                                                potongan = 200000;
-                                                System.out.println("Anda dapat potongan   : " + potongan);
-                                                System.out.println("------------------------------  +");
-                                            } else {
-                                                potongan = 100000;
-                                                System.out.println("Anda dapat potongan   : " + potongan);
-                                                System.out.println("------------------------------  +");
-                                            }
-                                        } else {
-                                            if( lamaSewa >= 3 ) {
-                                                potongan = 50000;
-                                                System.out.println("Anda dapat potongan   : " + potongan);
-                                                System.out.println("------------------------------  +");
-                                            } else {
-                                                potongan = 0;
-                                                System.out.println("----------------------------");
-                                            }
-                                        }
+                    int harga = 200000*jumlahKendaraan;
+                    System.out.println("=== RINCIAN PEMBAYARAN ===");
+                    System.out.println();
+                    System.out.println("Nama Penyewa          : " + namaPenyewa);
+                    System.out.println("Harga Kendaraan       : " + harga);
 
-                                        int tarif = harga-potongan;
-                                        System.out.println("Tarif yang anda bayar : " + tarif);
-                                        System.out.println();
-                                        
-                                        System.out.print("Input pilihan lagi [y/t] ? "); String lagi = s.next();
-                                        if( lagi.equalsIgnoreCase("y")) {
-                                            lanjut = true;
-                                        } else {
-                                            lanjut = false;
-                                        }
-                                  }
-                                    break;
-
-                        case "2": lanjut = true;
-                                    while(lanjut) {
-                                        clearScreen();
-                                        cetakJudul(" * MEMBUAT PERUBAHAN KELIPATAN ANGKA dengan '#' SESUAI INPUTAN * ");
-                                        
-                                        //ketik disini
-
-
-
-
-
-
-                                        
-                                        System.out.println();
-                                        
-                                        System.out.print("Input pilihan lagi [y/t] ? "); String lagi = s.next();
-                                        if( lagi.equalsIgnoreCase("y")) {
-                                            lanjut = true;
-                                        } else {
-                                            lanjut = false;
-                                        }
-                                    }
-                                    break;
-
-                        case "3": lanjut = true;
-                                    while(lanjut) {
-                                        clearScreen();
-                                        cetakJudul(" * MEMBUAT KELIPATAN ANGKA AKHIR * ");
-                                        
-                                        //ketik disini
-
-
-                                        
-
-
-                                        
-
-                                        System.out.println();
-                                        
-                                        System.out.print("Input pilihan lagi [y/t] ? "); String lagi = s.next();
-                                        if( lagi.equalsIgnoreCase("y")) {
-                                            lanjut = true;
-                                        } else {
-                                            lanjut = false;
-                                        }
-                                    }
-                                    break;
-
-                        case "4": lanjut = true;
-                                    while(lanjut) {
-                                        clearScreen();
-                                        cetakJudul(" * MEMBUAT PERULANGAN 'X' DAN 'O' * ");
-                                        
-                                        //ketik disini
-
-
-
-
-
-
-                                        System.out.println();
-                                        
-                                        System.out.print("Input pilihan lagi [y/t] ? "); String lagi = s.next();
-                                        if( lagi.equalsIgnoreCase("y")) {
-                                            lanjut = true;
-                                        } else {
-                                            lanjut = false;
-                                        }
-                                    }
-                                    break;
-
-                        case "5": lanjut = true;
-                                    while(lanjut) {
-                                        clearScreen();
-                                        cetakJudul(" * DATA PEMESANAN GAMIS / SARIMBIT * ");
-                                        
-                                        //ketik disini
-
-
-
-
-
-
-
-                                        System.out.println();
-                                        
-                                        System.out.print("Input pilihan lagi [y/t] ? "); String lagi = s.next();
-                                        if( lagi.equalsIgnoreCase("y")) {
-                                            lanjut = true;
-                                        } else {
-                                            lanjut = false;
-                                        }
-                                    }
-                                    break;
-
-                        case "6": lanjut = true;
-                                    while(lanjut) {
-                                        clearScreen();
-                                        cetakJudul(" * DATA PENDAFTARAN MAHASISWA BARU * ");
-
-                                        //ketik disini
-
-
-
-
-
-                        
-                                        System.out.println();
-                                        
-                                        System.out.print("Input pilihan lagi [y/t] ? "); String lagi = s.next();
-                                        if( lagi.equalsIgnoreCase("y")) {
-                                            lanjut = true;
-                                        } else {
-                                            lanjut = false;
-                                        }
-                                    }
-                                    break;
-
-                        default: System.out.println("Nomor menu tidak valid silahkan pilih menu dengan angka 1 sampai 6.");
+                    int potongan;
+                    if (jumlahKendaraan >= 3) {
+                        if (lamaSewa >= 3) {
+                            potongan = 200000;
+                            System.out.println("Anda dapat potongan   : " + potongan);
+                            System.out.println("------------------------------  +");
+                        } else {
+                            potongan = 100000;
+                            System.out.println("Anda dapat potongan   : " + potongan);
+                            System.out.println("------------------------------  +");
+                        }
+                    } else {
+                        if (lamaSewa >= 3) {
+                            potongan = 50000;
+                            System.out.println("Anda dapat potongan   : " + potongan);
+                            System.out.println("------------------------------  +");
+                        } else {
+                            potongan = 0;
+                            System.out.println("----------------------------");
+                        }
                     }
 
-                    System.out.print("Kembali ke menu [y/t] ? ");
-                    mulai = s.next();
+                    int tarif = harga-potongan;
+                    System.out.println("Tarif yang anda bayar : " + tarif);
+                    System.out.println();
+                    break;
+
+                case 2 :
+                    System.out.println("-----------------------------------------------------------------");
+                    System.out.println(" * MEMBUAT PERUBAHAN KELIPATAN ANGKA dengan '#' SESUAI INPUTAN * ");
+                    System.out.println("-----------------------------------------------------------------");
+                                
+                    // TULIS KODINGAN NYA DISINI
+
+                    break;
+
+                case 3 :
+                    System.out.println("-----------------------------------");
+                    System.out.println(" * MEMBUAT KELIPATAN ANGKA AKHIR * ");
+                    System.out.println("-----------------------------------");
+                                
+                    // TULIS KODINGAN NYA DISINI
+
+                    break;
+
+                case 4 :
+                    System.out.println("------------------------------------");    
+                    System.out.println(" * MEMBUAT PERULANGAN 'X' DAN 'O' * ");
+                    System.out.println("------------------------------------");
+                                
+                    // TULIS KODINGAN NYA DISINI
+
+                    break;
+
+                case 5 :
+                    System.out.println("-------------------------------------");
+                    System.out.println(" * DATA PEMESANAN GAMIS / SARIMBIT * ");
+                    System.out.println("------------------------------------");
+                                
+                    // TULIS KODINGAN NYA DISINI
+
+                    break;
+
+                case 6 :
+                    System.out.println("-------------------------------------");
+                    System.out.println(" * DATA PENDAFTARAN MAHASISWA BARU * ");
+                    System.out.println("-------------------------------------");
+
+                    System.out.print("Masukkan Jumlah Mahasiswa : "); int jumlahMahasiswa = s.nextInt();
+                    System.out.println();
+                    String[][] dataMahasiswa = new String[jumlahMahasiswa][3];
+                    for (int i = 0; i < jumlahMahasiswa; i++) {
+                        System.out.println("Masukan Data Mahasiswa Ke "+(i+1));
+                        System.out.print("NIM     : "); dataMahasiswa[i][0] = s.next();
+                        System.out.print("NAMA    : "); dataMahasiswa[i][1] = s.next();
+                        System.out.print("JURUSAN : "); dataMahasiswa[i][2] = s.next();
+                        System.out.println();
+                    }
+                    System.out.println("Data Mahasiswa Baru Yang Mendaftar");
+                    System.out.println("------------------------------------------------");
+                    System.out.println("NIM\t\tNAMA\t\tJURUSAN");
+                    System.out.println("------------------------------------------------");
+                    for (String[] dm : dataMahasiswa) {
+                        System.out.println(dm[0]+"\t\t"+dm[1]+"\t\t"+dm[2]);
+                    }
+                    System.out.println("------------------------------------------------");
+                    break;
+
+                default :
+                    System.out.println("Nomor menu tidak valid silahkan pilih menu dengan angka 1 sampai 6.");
+                    break;
             }
-            System.out.println("Terima kasih...");
-            System.exit(0);
+
+            System.out.print("Kembali ke menu [y/t] ? ");
+            tampilkanMenu = s.next();
         }
-
-            // untuk clear screen (membersihkan tampilan di terminal)
-            private static void clearScreen() {
-                try {
-                    // apabila menggunakan os windows maka lakukan perintah cls di cmd
-                    if (System.getProperty("os.name").contains("Windows")) {
-                        new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
-
-                    // apabila tidak menggunakan os windows dan support kode ANSI maka clear menggunakan kode ANSI
-                    } else if (isSupportANSICode()) {
-                        System.out.print("\033\143");
-                    }
-                } catch (Exception ex) {
-                    System.err.println("Tidak bisa clear screen");
-                }
-            }
-
-            // cek apakah console yang digunakan support kode ANSI atau tidak
-            // untuk windows umum nya tidak support https://superuser.com/questions/413073/windows-console-with-ansi-colors-handling
-            private static boolean isSupportANSICode() {
-                return System.console() != null && System.getenv().get("TERM") != null;
-            }
+        System.out.println();
+        System.out.println("Terima kasih...");
+    }
 }
