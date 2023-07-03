@@ -127,7 +127,7 @@ public class KuisAkhirUPM {
 
                     for (int i = 0; i < baris; i++) {
                         for (int j = 0; j < kolom; j++) {
-                            if (i == j || i + j == baris - 1) {
+                            if ((i + j) % 2 == 0) {
                                 System.out.print("X ");
                             } else {
                                 System.out.print("O ");
