@@ -118,7 +118,30 @@ public class KuisAkhirUPM {
                     System.out.println(" * MEMBUAT PERULANGAN 'X' DAN 'O' * ");
                     System.out.println("------------------------------------");
                                 
-                    // TULIS KODINGAN NYA DISINI
+                    import java.util.Scanner;
+
+public class PolaXO {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Masukkan jumlah baris: ");
+        int baris = input.nextInt();
+
+        System.out.print("Masukkan jumlah kolom: ");
+        int kolom = input.nextInt();
+
+        for (int i = 0; i < baris; i++) {
+            for (int j = 0; j < kolom; j++) {
+                if (i == j || i + j == baris - 1) {
+                    System.out.print("X ");
+                } else {
+                    System.out.print("O ");
+                }
+            }
+            System.out.println();
+        }
+    }
+}
 
                     break;
 
