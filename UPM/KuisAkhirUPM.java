@@ -97,9 +97,20 @@ public class KuisAkhirUPM {
                     System.out.println("-----------------------------------");
                     System.out.println(" * MEMBUAT KELIPATAN ANGKA AKHIR * ");
                     System.out.println("-----------------------------------");
-                                
-                    // TULIS KODINGAN NYA DISINI
-
+                    System.out.println();            
+                    System.out.print("input angka akhir = "); int akhir = s.nextInt();
+                    System.out.print("input angka batas = "); int batas = s.nextInt();
+                    System.out.println();
+                    int idx = akhir;
+                    do {
+                        if (idx>=akhir) {
+                            System.out.print( idx + " ");
+                            idx+=akhir;
+                        }
+                    } while (idx<=batas);
+                    System.out.println();
+                    System.out.println("-----------------------------------");
+                    System.out.println();
                     break;
 
                 case 4 :
