@@ -8,10 +8,10 @@ public class KuisAkhirUPM {
         System.out.println("| NPM          | Nama                      | Pembagian Tugas |");
         System.out.println("+--------------+---------------------------+-----------------+");
         System.out.println("| 202243500497 | Alfarobby                 | Menu No. 1      |");
-        System.out.println("| 202243500500 | Ahmad Badawi              | Menu No. ?      |");
+        System.out.println("| 202243500500 | Ahmad Badawi              | Menu No. 3      |");
         System.out.println("| 202243500501 | Abdur Rosyid Fachriansyah | Menu No. ?      |");
         System.out.println("| 202243500502 | Sangga Buana              | Menu No. ?      |");
-        System.out.println("| 202243500524 | Riyan Rizaldy             | Menu No. ?      |");
+        System.out.println("| 202243500524 | Riyan Rizaldy             | Menu No. 4      |");
         System.out.println("| 202243570024 | Jeffry Luqman             | Menu No. 6      |");
         System.out.println("+--------------+---------------------------+-----------------+");
 
@@ -118,8 +118,26 @@ public class KuisAkhirUPM {
                     System.out.println(" * MEMBUAT PERULANGAN 'X' DAN 'O' * ");
                     System.out.println("------------------------------------");
                                 
-                    // TULIS KODINGAN NYA DISINI
+                    System.out.println();
+                    System.out.print("Masukkan jumlah baris: ");
+                    int baris = s.nextInt();
 
+                    System.out.print("Masukkan jumlah kolom: ");
+                    int kolom = s.nextInt();
+
+                    for (int i = 0; i < baris; i++) {
+                        for (int j = 0; j < kolom; j++) {
+                            if (i == j || i + j == baris - 1) {
+                                System.out.print("X ");
+                            } else {
+                                System.out.print("O ");
+                            }
+                        }
+                        System.out.println();
+                    }
+                    System.out.println();
+                    System.out.println("-----------------------------------");
+                    System.out.println();
                     break;
 
                 case 5 :
