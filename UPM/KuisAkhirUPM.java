@@ -9,11 +9,12 @@ public class KuisAkhirUPM {
         System.out.println("+--------------+---------------------------+-----------------+");
         System.out.println("| 202243500497 | Alfarobby                 | Menu No. 1      |");
         System.out.println("| 202243500500 | Ahmad Badawi              | Menu No. 3      |");
-        System.out.println("| 202243500501 | Abdur Rosyid Fachriansyah | Menu No. ?      |");
-        System.out.println("| 202243500502 | Sangga Buana              | Menu No. ?      |");
+        System.out.println("| 202243500501 | Abdur Rosyid Fachriansyah | Menu No. 5      |");
+        System.out.println("| 202243500502 | Sangga Buana              | Menu No. 2      |");
         System.out.println("| 202243500524 | Riyan Rizaldy             | Menu No. 4      |");
         System.out.println("| 202243570024 | Jeffry Luqman             | Menu No. 6      |");
         System.out.println("+--------------+---------------------------+-----------------+");
+        System.out.println();
 
         Scanner s = new Scanner(System.in);
 
@@ -30,6 +31,7 @@ public class KuisAkhirUPM {
             System.out.println("5 : Pilih > Data Penjualan Gamis [array 1D]");
             System.out.println("6 : Pilih > Pendaftaran Mahasiswa Baru [array 2D]");
             System.out.print("Masukkan pilihan anda : "); int menuDipilih = s.nextInt();
+            System.out.println();
             System.out.println();
 
             switch (menuDipilih) {
@@ -81,7 +83,6 @@ public class KuisAkhirUPM {
 
                     int tarif = harga-potongan;
                     System.out.println("Tarif yang anda bayar : " + tarif);
-                    System.out.println();
                     break;
 
                 case 2 :
@@ -109,16 +110,14 @@ public class KuisAkhirUPM {
                         }
                     } while (idx<=batas);
                     System.out.println();
-                    System.out.println("-----------------------------------");
-                    System.out.println();
                     break;
 
                 case 4 :
                     System.out.println("------------------------------------");    
                     System.out.println(" * MEMBUAT PERULANGAN 'X' DAN 'O' * ");
                     System.out.println("------------------------------------");
-                                
                     System.out.println();
+
                     System.out.print("Masukkan jumlah baris: ");
                     int baris = s.nextInt();
 
@@ -127,7 +126,7 @@ public class KuisAkhirUPM {
 
                     for (int i = 0; i < baris; i++) {
                         for (int j = 0; j < kolom; j++) {
-                            if ((i + j) % 2 == 0) {
+                            if (j % 2 == 0) {
                                 System.out.print("X ");
                             } else {
                                 System.out.print("O ");
@@ -135,18 +134,52 @@ public class KuisAkhirUPM {
                         }
                         System.out.println();
                     }
-                    System.out.println();
-                    System.out.println("-----------------------------------");
-                    System.out.println();
                     break;
 
                 case 5 :
-                    System.out.println("-------------------------------------");
-                    System.out.println(" * DATA PEMESANAN GAMIS / SARIMBIT * ");
-                    System.out.println("------------------------------------");
-                                
-                    // TULIS KODINGAN NYA DISINI
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    System.out.println("   === DATA PEMESANAN GAMIS / SARIMBIT ===   ");
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    System.out.println();
 
+                    //input nama penjaga
+                    System.out.print("Masukkan nama penjaga : ");
+                    String penjaga = s.next();
+                    
+                    // input jumlah pesanan
+                    System.out.print("Masukkan jumlah pesanan: ");
+                    int jumlahPesanan = s.nextInt();
+
+                    // Deklarasi Array 1D
+                    double[] hargaGamis = new double[jumlahPesanan];
+                    int[] kodeBarang = new int[jumlahPesanan];
+
+                    double totalPendapatan = 0.0;
+
+                    for (int i = 0; i < jumlahPesanan; i++) {
+                        System.out.print("Pesanan ke-" + (i + 1) + ": ");
+                        hargaGamis[i] = s.nextInt();
+                        
+                        System.out.print("Kode Barang : ");
+                        kodeBarang[i] = s.nextInt();
+                        
+                        // Total pendapatan
+                        totalPendapatan += hargaGamis[i];
+                    }
+                    
+                    // Keuntungan 10% dari pendapatan
+                    double keuntungan = 0.1 *totalPendapatan;
+                    
+                    //Total pendapatan bersih
+                    double bersih = totalPendapatan-keuntungan;
+                    
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    System.out.println("Hasil total pendapatan: Rp " + totalPendapatan);
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    System.out.println("Keuntungan "+ jumlahPesanan +" barang : Rp "+ keuntungan);
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    System.out.println("Pendapatan bersih : Rp "+ bersih);
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     break;
 
                 case 6 :
@@ -164,7 +197,7 @@ public class KuisAkhirUPM {
                         System.out.print("JURUSAN : "); dataMahasiswa[i][2] = s.next();
                         System.out.println();
                     }
-                    System.out.println("Data Mahasiswa Baru Yang Mendaftar");
+                    System.out.println("Data Mahasiswa Baru");
                     System.out.println("------------------------------------------------");
                     System.out.println("NIM\t\tNAMA\t\tJURUSAN");
                     System.out.println("------------------------------------------------");
@@ -179,6 +212,7 @@ public class KuisAkhirUPM {
                     break;
             }
 
+            System.out.println();
             System.out.print("Kembali ke menu [y/t] ? ");
             tampilkanMenu = s.next();
         }
