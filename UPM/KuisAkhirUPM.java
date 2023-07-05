@@ -89,9 +89,30 @@ public class KuisAkhirUPM {
                     System.out.println("-----------------------------------------------------------------");
                     System.out.println(" * MEMBUAT PERUBAHAN KELIPATAN ANGKA dengan '#' SESUAI INPUTAN * ");
                     System.out.println("-----------------------------------------------------------------");
-                                
-                    // TULIS KODINGAN NYA DISINI
 
+                    System.out.print("Masukkan angka awal: ");
+                    int angkaAwal = s.nextInt();
+
+                    System.out.print("Masukkan angka kelipatan: ");
+                    int kelipatan = s.nextInt();
+
+                    System.out.print("Masukkan jumlah perubahan: ");
+                    int jumlahPerubahan = s.nextInt();
+
+                    System.out.println();
+
+                    int counter = 1;
+                    while (counter <= jumlahPerubahan) {
+                        System.out.print(angkaAwal + " ");
+
+                        if (counter % kelipatan == 0) {
+                            System.out.print("# ");
+                        }
+
+                        angkaAwal += kelipatan;
+                        counter++;
+                    }
+                    System.out.println();
                     break;
 
                 case 3 :
