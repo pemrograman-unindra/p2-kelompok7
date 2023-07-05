@@ -39,7 +39,7 @@ public class KuisAkhirUPM {
                     System.out.println("-------------------------------------");
                     System.out.println(" * MENGHITUNG TARIF SEWA KENDARAAN * ");
                     System.out.println("-------------------------------------");
-                    System.out.println("* Promo IDUL ADHA*");
+                    System.out.println("* Promo IDUL ADHA *");
                     System.out.println("# Kendaraan >= 3 #");
                     System.out.println("- Lama Sewa >= 3 hari Potongan 200.000");
                     System.out.println("- Lama Sewa <= 2 hari Potongan 100.000");
@@ -64,20 +64,20 @@ public class KuisAkhirUPM {
                         if (lamaSewa >= 3) {
                             potongan = 200000;
                             System.out.println("Anda dapat potongan   : " + potongan);
-                            System.out.println("------------------------------  +");
+                            System.out.println("------------------------------  -");
                         } else {
                             potongan = 100000;
                             System.out.println("Anda dapat potongan   : " + potongan);
-                            System.out.println("------------------------------  +");
+                            System.out.println("------------------------------  -");
                         }
                     } else {
                         if (lamaSewa >= 3) {
                             potongan = 50000;
                             System.out.println("Anda dapat potongan   : " + potongan);
-                            System.out.println("------------------------------  +");
+                            System.out.println("------------------------------  -");
                         } else {
                             potongan = 0;
-                            System.out.println("----------------------------");
+                            System.out.println("------------------------------");
                         }
                     }
 
